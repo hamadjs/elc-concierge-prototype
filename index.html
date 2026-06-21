@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ELC Shopify Beauty Concierge Prototype</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="workspace">
+        <aside class="intake-panel">
+          <div class="brand-lockup">
+            <span class="mark">ELC</span>
+            <div>
+              <p class="eyebrow">North America Concierge</p>
+              <h1>Portfolio beauty advisor</h1>
+            </div>
+          </div>
+
+          <form id="conciergeForm" class="intake-form">
+            <label>
+              Skin type
+              <select id="skinType">
+                <option value="oily">Oily</option>
+                <option value="dry">Dry</option>
+                <option value="combination" selected>Combination</option>
+                <option value="sensitive">Sensitive</option>
+                <option value="normal">Normal</option>
+              </select>
+            </label>
+
+            <label>
+              Primary goal
+              <select id="goal">
+                <option value="oil-control">Oil control</option>
+                <option value="hydration" selected>Hydration</option>
+                <option value="anti-age">Anti-aging</option>
+                <option value="simple-routine">Simple routine</option>
+                <option value="polished-look">Polished makeup look</option>
+              </select>
+            </label>
+
+            <fieldset>
+              <legend>Concerns</legend>
+              <div class="chip-grid">
+                <label><input type="checkbox" name="concerns" value="shine" checked /> Shine</label>
+                <label><input type="checkbox" name="concerns" value="pores" /> Pores</label>
+                <label><input type="checkbox" name="concerns" value="dryness" checked /> Dryness</label>
+                <label><input type="checkbox" name="concerns" value="fine-lines" /> Fine lines</label>
+                <label><input type="checkbox" name="concerns" value="spf" /> SPF</label>
+                <label><input type="checkbox" name="concerns" value="makeup" /> Makeup</label>
+              </div>
+            </fieldset>
+
+            <label>
+              Budget
+              <div class="budget-row">
+                <input id="budget" type="range" min="75" max="350" value="180" step="5" />
+                <strong id="budgetValue">$180</strong>
+              </div>
+            </label>
+
+            <label>
+              Concierge note
+              <textarea id="note" rows="4">I want an easy routine that improves hydration but does not feel greasy. I am open to one makeup item if it completes the look.</textarea>
+            </label>
+
+            <div class="button-row">
+              <button class="primary" type="submit">
+                <i data-lucide="sparkles"></i>
+                Build regimen
+              </button>
+              <button class="secondary" id="resetBtn" type="button" title="Reset">
+                <i data-lucide="rotate-ccw"></i>
+              </button>
+            </div>
+          </form>
+
+          <div class="shopify-card">
+            <div class="icon-pill"><i data-lucide="shopping-bag"></i></div>
+            <h2>Lean Shopify path</h2>
+            <p>
+              Lab Series and Tom Ford Beauty expose a common Shopify catalog structure, so the concierge can start as a discovery layer with product links before any unified checkout work.
+            </p>
+            <dl>
+              <div><dt>Feeds checked</dt><dd>products.json</dd></div>
+              <div><dt>Commerce model</dt><dd>PDP redirect</dd></div>
+              <div><dt>Expansion</dt><dd>Add Shopify brands</dd></div>
+            </dl>
+          </div>
+        </aside>
+
+        <section class="results-panel">
+          <header class="results-header">
+            <div>
+              <p class="eyebrow">Recommended from Shopify storefront data</p>
+              <h2 id="routineTitle">Hydration-first routine</h2>
+            </div>
+            <div class="total-box">
+              <span>Total</span>
+              <strong id="totalValue">$0</strong>
+              <small id="budgetStatus">Within budget</small>
+            </div>
+          </header>
+
+          <div class="summary-strip">
+            <div>
+              <span>Source brands</span>
+              <strong>Lab Series + Tom Ford Beauty</strong>
+            </div>
+            <div>
+              <span>Recommendation logic</span>
+              <strong>Rules + AI-ready explanation layer</strong>
+            </div>
+            <div>
+              <span>Integration scope</span>
+              <strong>No cart, checkout, OMS, or inventory dependency</strong>
+            </div>
+          </div>
+
+          <div id="routine" class="routine-grid"></div>
+
+          <section class="conversation">
+            <div class="chat-head">
+              <i data-lucide="message-circle"></i>
+              <h3>Concierge response</h3>
+            </div>
+            <p id="conciergeCopy"></p>
+            <div class="quick-actions">
+              <button type="button" data-preset="cheaper">Make it cheaper</button>
+              <button type="button" data-preset="premium">Make it premium</button>
+              <button type="button" data-preset="makeup">Add makeup finish</button>
+            </div>
+          </section>
+        </section>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
