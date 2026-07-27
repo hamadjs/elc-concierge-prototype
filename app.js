@@ -204,7 +204,6 @@ const defaultForm = {
   goal: "hydration",
   budget: 180,
   concerns: ["shine", "dryness"],
-  brands: ["Lab Series", "Tom Ford Beauty"],
   note: "I want an easy routine that improves hydration but does not feel greasy. I am open to one makeup item if it completes the look."
 };
 
@@ -219,39 +218,9 @@ const totalValue = document.querySelector("#totalValue");
 const budgetStatus = document.querySelector("#budgetStatus");
 const routineTitle = document.querySelector("#routineTitle");
 const conciergeCopy = document.querySelector("#conciergeCopy");
-const brandCount = document.querySelector("#brandCount");
-const brandHelper = document.querySelector("#brandHelper");
-const sourceBrands = document.querySelector("#sourceBrands");
-
-const liveShopifyBrands = ["Lab Series", "Tom Ford Beauty"];
 
 function getConcerns() {
   return [...document.querySelectorAll("input[name='concerns']:checked")].map((input) => input.value);
-}
-
-function getSelectedBrands() {
-  return [...document.querySelectorAll("input[name='brands']:checked")].map((input) => input.value);
-}
-
-function updateBrandAvailability() {
-  const selected = getSelectedBrands();
-  const maxed = selected.length >= 3;
-  brandCount.textContent = `${selected.length} / 3`;
-  document.querySelectorAll("input[name='brands']").forEach((input) => {
-    const label = input.closest("label");
-    input.disabled = !input.checked && maxed;
-    label.classList.toggle("is-disabled", input.disabled);
-  });
-
-  const connected = selected.filter((brand) => liveShopifyBrands.includes(brand));
-  const future = selected.filter((brand) => !liveShopifyBrands.includes(brand));
-  const connectedText = connected.length ? connected.join(" + ") : "Live Shopify sample brands";
-  sourceBrands.textContent = future.length
-    ? `${connectedText}; ${future.join(" + ")} queued`
-    : connectedText;
-  brandHelper.textContent = future.length
-    ? `${future.join(", ")} selected as future portfolio preferences. Live product cards currently use connected Shopify sample brands.`
-    : "Choose up to 3. Lab Series and Tom Ford Beauty are connected in this prototype.";
 }
 
 function getIntent() {
@@ -269,14 +238,13 @@ function getIntent() {
   return [...new Set([skinType.value, goal.value, ...getConcerns(), ...inferred])];
 }
 
-function scoreProduct(product, intent, preferPremium, selectedBrands) {
+function scoreProduct(product, intent, preferPremium) {
   const tagScore = product.tags.reduce((score, tag) => score + (intent.includes(tag) ? 3 : 0), 0);
   const typeBoost = ["Cleanser", "Moisturizer", "Serum", "SPF"].includes(product.type) ? 2 : 0;
   const makeupBoost = intent.includes("makeup") || intent.includes("polished-look") ? (["Primer", "Foundation", "Concealer", "Lip", "Blush"].includes(product.type) ? 4 : 0) : 0;
   const premiumScore = preferPremium && product.tags.includes("premium") ? 5 : 0;
   const accessibleScore = !preferPremium && product.price <= 80 ? 2 : 0;
-  const selectedBrandBoost = selectedBrands.includes(product.brand) ? 8 : 0;
-  return tagScore + typeBoost + makeupBoost + premiumScore + accessibleScore + selectedBrandBoost;
+  return tagScore + typeBoost + makeupBoost + premiumScore + accessibleScore;
 }
 
 function pickRoutine() {
@@ -284,11 +252,6 @@ function pickRoutine() {
   const maxBudget = Number(budget.value);
   const preferPremium = note.value.toLowerCase().includes("premium") || note.value.toLowerCase().includes("luxury");
   const wantsMakeup = intent.includes("makeup") || intent.includes("polished-look");
-  const selectedBrands = getSelectedBrands();
-  const connectedSelectedBrands = selectedBrands.filter((brand) => liveShopifyBrands.includes(brand));
-  const productPool = connectedSelectedBrands.length
-    ? catalog.filter((product) => connectedSelectedBrands.includes(product.brand))
-    : catalog;
   const targets = wantsMakeup
     ? ["Cleanser", "Moisturizer", "Primer", "Lip"]
     : ["Cleanser", "Serum", "Moisturizer", intent.includes("spf") ? "SPF" : "Toner"];
@@ -297,9 +260,9 @@ function pickRoutine() {
   let remaining = maxBudget;
 
   targets.forEach((type) => {
-    const choices = productPool
+    const choices = catalog
       .filter((product) => product.type === type && !selected.includes(product))
-      .map((product) => ({ product, score: scoreProduct(product, intent, preferPremium, selectedBrands) }))
+      .map((product) => ({ product, score: scoreProduct(product, intent, preferPremium) }))
       .sort((a, b) => b.score - a.score || a.product.price - b.product.price);
 
     const affordable = choices.find((choice) => choice.product.price <= remaining);
@@ -311,7 +274,7 @@ function pickRoutine() {
   });
 
   if (!wantsMakeup && remaining >= 35) {
-    const finishing = productPool
+    const finishing = catalog
       .filter((product) => ["Lip", "Blush", "Concealer"].includes(product.type) && product.price <= remaining)
       .sort((a, b) => a.price - b.price)[0];
     if (finishing) selected.push(finishing);
@@ -328,15 +291,11 @@ function pickRoutine() {
 }
 
 function render() {
-  updateBrandAvailability();
   budgetValue.textContent = `$${budget.value}`;
   const products = pickRoutine();
   const total = products.reduce((sum, product) => sum + product.price, 0);
   const maxBudget = Number(budget.value);
   const concernText = getConcerns().join(", ") || "core routine";
-  const selectedBrands = getSelectedBrands();
-  const connected = selectedBrands.filter((brand) => liveShopifyBrands.includes(brand));
-  const future = selectedBrands.filter((brand) => !liveShopifyBrands.includes(brand));
   routineTitle.textContent = `${goal.options[goal.selectedIndex].text} concierge edit`;
   totalValue.textContent = `$${total}`;
   budgetStatus.textContent = total <= maxBudget ? `$${maxBudget - total} under budget` : `$${total - maxBudget} over budget`;
@@ -369,13 +328,7 @@ function render() {
     )
     .join("");
 
-  const brandSentence = connected.length
-    ? `This edit uses live Shopify sample products from ${connected.join(" and ")}.`
-    : "This edit falls back to live Shopify sample products until selected brand catalogs are connected.";
-  const futureSentence = future.length
-    ? ` ${future.join(", ")} are treated as selected portfolio preferences for the future state once those Shopify catalog feeds are available.`
-    : "";
-  conciergeCopy.textContent = `Based on ${skinType.value} skin, ${concernText}, and a $${maxBudget} budget, ${brandSentence}${futureSentence} In production, the same flow can call each Shopify storefront catalog, filter by price/category/availability, generate the recommendation, and send purchase intent back to each brand PDP.`;
+  conciergeCopy.textContent = `Based on ${skinType.value} skin, ${concernText}, and a $${maxBudget} budget, this edit uses Lab Series for the core skin regimen and selectively adds Tom Ford Beauty where it improves the finish. In production, the same flow can call Shopify storefront catalog data, filter by price/category/availability, generate the recommendation, and send purchase intent back to each brand PDP.`;
   lucide.createIcons();
 }
 
@@ -387,10 +340,6 @@ function setDefaults() {
   document.querySelectorAll("input[name='concerns']").forEach((input) => {
     input.checked = defaultForm.concerns.includes(input.value);
   });
-  document.querySelectorAll("input[name='brands']").forEach((input) => {
-    input.checked = defaultForm.brands.includes(input.value);
-    input.disabled = false;
-  });
   render();
 }
 
@@ -401,13 +350,6 @@ form.addEventListener("submit", (event) => {
 
 budget.addEventListener("input", render);
 document.querySelector("#resetBtn").addEventListener("click", setDefaults);
-document.querySelectorAll("input[name='brands']").forEach((input) => {
-  input.addEventListener("change", render);
-  input.addEventListener("input", render);
-});
-document.querySelector("#brandGrid").addEventListener("click", () => {
-  requestAnimationFrame(render);
-});
 
 document.querySelectorAll("[data-preset]").forEach((button) => {
   button.addEventListener("click", () => {
