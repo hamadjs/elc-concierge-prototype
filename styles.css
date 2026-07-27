@@ -201,16 +201,25 @@ fieldset {
   font-size: 12px;
 }
 
-.brand-grid label[data-status="live"]::after {
-  content: "Live";
+.brand-grid label[data-status]::after {
   margin-left: auto;
   padding: 2px 6px;
   border-radius: 999px;
-  background: #e7f3ef;
-  color: var(--accent-2);
   font-size: 9px;
   font-weight: 900;
   text-transform: uppercase;
+}
+
+.brand-grid label[data-status="shopify"]::after {
+  content: "Shopify";
+  background: #e7f3ef;
+  color: var(--accent-2);
+}
+
+.brand-grid label[data-status="site"]::after {
+  content: "Site";
+  background: #f6ead2;
+  color: #7a4d05;
 }
 
 .brand-grid label.is-disabled {
@@ -427,6 +436,20 @@ dd {
   width: 76%;
   height: 76%;
   object-fit: contain;
+}
+
+.product-fallback {
+  display: grid;
+  place-items: center;
+  width: 76%;
+  height: 76%;
+  border: 1px solid rgba(23, 23, 23, 0.18);
+  border-radius: 8px;
+  background: #fff;
+  color: #246b59;
+  font-family: Georgia, serif;
+  font-size: 34px;
+  font-weight: 800;
 }
 
 .product-body {

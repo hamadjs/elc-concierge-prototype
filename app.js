@@ -196,6 +196,83 @@ const catalog = [
     url: "https://www.tomfordbeauty.com/products/tom-ford-research-serum-concentrate",
     tags: ["premium", "anti-age", "fine-lines", "dryness"],
     reason: "A prestige treatment candidate for high-budget, premium-skincare scenarios."
+  },
+  {
+    brand: "Clinique",
+    title: "All About Clean™ Liquid Facial Soap",
+    handle: "all-about-cleantm-liquid-facial-soap",
+    type: "Cleanser",
+    price: 29,
+    image: "",
+    url: "https://www.clinique.com/product/1673/8279/skincare/cleansers-makeup-removers/all-about-cleantm-liquid-facial-soap",
+    tags: ["hydration", "dryness", "sensitive", "normal", "combination", "oily", "simple-routine"],
+    reason: "A dermatologist-developed, fragrance-free cleanser from Clinique.com that fits multiple skin types."
+  },
+  {
+    brand: "Clinique",
+    title: "Clarifying Lotion 3",
+    handle: "clarifying-lotion-3",
+    type: "Toner",
+    price: 23,
+    image: "",
+    url: "https://www.clinique.com/product/1682/15503/skincare/exfoliators/clarifying-lotion-3/exfoliates-to-balance-combination-oily-skins",
+    tags: ["oily", "shine", "pores", "oil-control", "combination"],
+    reason: "A Clinique.com exfoliating lotion for combination-oily skin that helps with dullness and excess oil."
+  },
+  {
+    brand: "Clinique",
+    title: "Dramatically Different™ Moisturizing Gel",
+    handle: "dramatically-differenttm-moisturizing-gel",
+    type: "Moisturizer",
+    price: 34,
+    image: "",
+    url: "https://www.clinique.com/product/1687/5047/skincare/moisturizers/dramatically-differenttm-moisturizing-gel",
+    tags: ["oily", "shine", "hydration", "combination", "simple-routine"],
+    reason: "An oil-free Clinique moisturizer for combination-oily or oily skin that keeps the routine budget-friendly."
+  },
+  {
+    brand: "Clinique",
+    title: "Moisture Surge™ 100H Auto-Replenishing Hydrator",
+    handle: "moisture-surgetm-100h-auto-replenishing-hydrator",
+    type: "Moisturizer",
+    price: 49,
+    image: "",
+    url: "https://www.clinique.com/product/1687/83690/skincare/moisturizers/moisture-surgetm-100h-auto-replenishing-hydrator",
+    tags: ["hydration", "dryness", "normal", "combination", "sensitive"],
+    reason: "A Clinique hydration hero for users asking for comfort, plumpness, or non-heavy moisture."
+  },
+  {
+    brand: "Clinique",
+    title: "Dramatically Different Moisturizing Lotion+™ Broad Spectrum SPF 35",
+    handle: "dramatically-different-moisturizing-lotiontm-broad-spectrum-spf-35",
+    type: "SPF",
+    price: 34,
+    image: "",
+    url: "https://www.clinique.com/product/1687/138066/skincare/moisturizers/dramatically-different-moisturizing-lotiontm-broad-spectrum-spf-35",
+    tags: ["spf", "dry", "dryness", "sensitive", "simple-routine"],
+    reason: "A Clinique moisturizer-plus-SPF option for a lean morning routine."
+  },
+  {
+    brand: "Clinique",
+    title: "Clinique Smart Clinical Repair™ Wrinkle Correcting Serum",
+    handle: "clinique-smart-clinical-repairtm-wrinkle-correcting-serum",
+    type: "Serum",
+    price: 109,
+    image: "",
+    url: "https://www.clinique.com/product/4034/87057/skincare/serum/clinique-smart-clinical-repairtm-wrinkle-correcting-serum",
+    tags: ["anti-age", "fine-lines", "sensitive", "premium"],
+    reason: "A Clinique.com serum choice for anti-aging or fine-line concerns."
+  },
+  {
+    brand: "Clinique",
+    title: "Even Better Clinical™ Dark Spot Clearing Serum",
+    handle: "even-better-clinicaltm-dark-spot-clearing-serum",
+    type: "Serum",
+    price: 65,
+    image: "",
+    url: "https://www.clinique.com/product/4034/131503/skincare/serum/even-better-clinicaltm-dark-spot-clearing-serum",
+    tags: ["dark-spots", "uneven-tone", "hydration", "sensitive"],
+    reason: "A Clinique serum option for uneven tone, dark spots, and radiance needs."
   }
 ];
 
@@ -223,7 +300,8 @@ const brandCount = document.querySelector("#brandCount");
 const brandHelper = document.querySelector("#brandHelper");
 const sourceBrands = document.querySelector("#sourceBrands");
 
-const liveShopifyBrands = ["Lab Series", "Tom Ford Beauty"];
+const shopifyCatalogBrands = ["Lab Series", "Tom Ford Beauty"];
+const connectedCatalogBrands = [...shopifyCatalogBrands, "Clinique"];
 
 function getConcerns() {
   return [...document.querySelectorAll("input[name='concerns']:checked")].map((input) => input.value);
@@ -243,15 +321,15 @@ function updateBrandAvailability() {
     label.classList.toggle("is-disabled", input.disabled);
   });
 
-  const connected = selected.filter((brand) => liveShopifyBrands.includes(brand));
-  const future = selected.filter((brand) => !liveShopifyBrands.includes(brand));
+  const connected = selected.filter((brand) => connectedCatalogBrands.includes(brand));
+  const future = selected.filter((brand) => !connectedCatalogBrands.includes(brand));
   const connectedText = connected.length ? connected.join(" + ") : "Live Shopify sample brands";
   sourceBrands.textContent = future.length
     ? `${connectedText}; ${future.join(" + ")} queued`
     : connectedText;
   brandHelper.textContent = future.length
-    ? `${future.join(", ")} selected as future portfolio preferences. Live product cards currently use connected Shopify sample brands.`
-    : "Choose up to 3. Lab Series and Tom Ford Beauty are connected in this prototype.";
+    ? `${future.join(", ")} selected as future portfolio preferences. Product cards use currently connected catalog sources.`
+    : "Choose up to 3. Lab Series and Tom Ford Beauty use Shopify feeds; Clinique uses Clinique.com product pages.";
 }
 
 function getIntent() {
@@ -285,7 +363,7 @@ function pickRoutine() {
   const preferPremium = note.value.toLowerCase().includes("premium") || note.value.toLowerCase().includes("luxury");
   const wantsMakeup = intent.includes("makeup") || intent.includes("polished-look");
   const selectedBrands = getSelectedBrands();
-  const connectedSelectedBrands = selectedBrands.filter((brand) => liveShopifyBrands.includes(brand));
+  const connectedSelectedBrands = selectedBrands.filter((brand) => connectedCatalogBrands.includes(brand));
   const productPool = connectedSelectedBrands.length
     ? catalog.filter((product) => connectedSelectedBrands.includes(product.brand))
     : catalog;
@@ -317,6 +395,21 @@ function pickRoutine() {
     if (finishing) selected.push(finishing);
   }
 
+  connectedSelectedBrands.forEach((brand) => {
+    if (selected.some((product) => product.brand === brand)) return;
+    const currentTotal = selected.reduce((sum, product) => sum + product.price, 0);
+    const candidates = productPool
+      .filter((product) => product.brand === brand && !selected.includes(product))
+      .map((product) => ({ product, score: scoreProduct(product, intent, preferPremium, selectedBrands) }))
+      .sort((a, b) => b.score - a.score || a.product.price - b.product.price);
+    const candidate = candidates.find((item) => item.product.price <= maxBudget);
+    if (!candidate) return;
+    const replaceIndex = selected.findIndex((product) => product.brand !== brand && currentTotal - product.price + candidate.product.price <= maxBudget);
+    if (replaceIndex >= 0) {
+      selected.splice(replaceIndex, 1, candidate.product);
+    }
+  });
+
   const total = selected.reduce((sum, product) => sum + product.price, 0);
   if (total > maxBudget) {
     return selected
@@ -335,8 +428,8 @@ function render() {
   const maxBudget = Number(budget.value);
   const concernText = getConcerns().join(", ") || "core routine";
   const selectedBrands = getSelectedBrands();
-  const connected = selectedBrands.filter((brand) => liveShopifyBrands.includes(brand));
-  const future = selectedBrands.filter((brand) => !liveShopifyBrands.includes(brand));
+  const connected = selectedBrands.filter((brand) => connectedCatalogBrands.includes(brand));
+  const future = selectedBrands.filter((brand) => !connectedCatalogBrands.includes(brand));
   routineTitle.textContent = `${goal.options[goal.selectedIndex].text} concierge edit`;
   totalValue.textContent = `$${total}`;
   budgetStatus.textContent = total <= maxBudget ? `$${maxBudget - total} under budget` : `$${total - maxBudget} over budget`;
@@ -347,7 +440,11 @@ function render() {
       (product, index) => `
         <article class="product-card">
           <div class="product-media">
-            <img src="${product.image}" alt="${product.title}" loading="lazy" />
+            ${
+              product.image
+                ? `<img src="${product.image}" alt="${product.title}" loading="lazy" />`
+                : `<div class="product-fallback" aria-label="${product.brand} product visual">${product.brand === "Clinique" ? "CL" : product.brand.slice(0, 2)}</div>`
+            }
           </div>
           <div class="product-body">
             <div class="meta-row">
@@ -370,8 +467,8 @@ function render() {
     .join("");
 
   const brandSentence = connected.length
-    ? `This edit uses live Shopify sample products from ${connected.join(" and ")}.`
-    : "This edit falls back to live Shopify sample products until selected brand catalogs are connected.";
+    ? `This edit uses connected catalog products from ${connected.join(" and ")}.`
+    : "This edit falls back to connected sample products until selected brand catalogs are available.";
   const futureSentence = future.length
     ? ` ${future.join(", ")} are treated as selected portfolio preferences for the future state once those Shopify catalog feeds are available.`
     : "";
