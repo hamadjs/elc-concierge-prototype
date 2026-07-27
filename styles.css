@@ -167,6 +167,63 @@ fieldset {
   font-size: 13px;
 }
 
+.fieldset-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.fieldset-head span {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.brand-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.brand-grid label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--ink);
+  font-size: 12px;
+}
+
+.brand-grid label[data-status="live"]::after {
+  content: "Live";
+  margin-left: auto;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: #e7f3ef;
+  color: var(--accent-2);
+  font-size: 9px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.brand-grid label.is-disabled {
+  opacity: 0.45;
+}
+
+.helper-text {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
 .budget-row {
   display: grid;
   grid-template-columns: 1fr 64px;

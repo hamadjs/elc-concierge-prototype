@@ -22,6 +22,7 @@ Then visit `http://localhost:4173`.
 ## Prototype behavior
 
 - User provides skin type, goal, concerns, budget, and a short concierge note.
+- User can select up to 3 preferred ELC brands; Lab Series and Tom Ford Beauty are connected as live Shopify sample catalogs in this prototype.
 - The app ranks a small catalog snapshot from Lab Series and Tom Ford Beauty.
 - It returns a routine with product cards, rationale, prices, total budget, images, and brand PDP links.
 

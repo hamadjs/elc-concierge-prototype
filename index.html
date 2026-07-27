@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ELC Shopify Beauty Concierge Prototype</title>
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles.css?v=2" />
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   </head>
   <body>
@@ -52,6 +52,28 @@
                 <label><input type="checkbox" name="concerns" value="spf" /> SPF</label>
                 <label><input type="checkbox" name="concerns" value="makeup" /> Makeup</label>
               </div>
+            </fieldset>
+
+            <fieldset>
+              <div class="fieldset-head">
+                <legend>Preferred ELC brands</legend>
+                <span id="brandCount">2 / 3</span>
+              </div>
+              <div class="brand-grid" id="brandGrid">
+                <label data-status="live"><input type="checkbox" name="brands" value="Lab Series" checked /> Lab Series</label>
+                <label data-status="live"><input type="checkbox" name="brands" value="Tom Ford Beauty" checked /> Tom Ford Beauty</label>
+                <label><input type="checkbox" name="brands" value="Clinique" /> CL / Clinique</label>
+                <label><input type="checkbox" name="brands" value="Estée Lauder" /> ELC / Estée Lauder</label>
+                <label><input type="checkbox" name="brands" value="Bobbi Brown Cosmetics" /> BB / Bobbi Brown</label>
+                <label><input type="checkbox" name="brands" value="M·A·C" /> MAC</label>
+                <label><input type="checkbox" name="brands" value="Origins" /> Origins</label>
+                <label><input type="checkbox" name="brands" value="La Mer" /> La Mer</label>
+                <label><input type="checkbox" name="brands" value="Jo Malone London" /> Jo Malone</label>
+                <label><input type="checkbox" name="brands" value="Aveda" /> Aveda</label>
+                <label><input type="checkbox" name="brands" value="Too Faced" /> Too Faced</label>
+                <label><input type="checkbox" name="brands" value="Smashbox" /> Smashbox</label>
+              </div>
+              <p class="helper-text" id="brandHelper">Choose up to 3. Lab Series and Tom Ford Beauty are connected in this prototype.</p>
             </fieldset>
 
             <label>
@@ -108,7 +130,7 @@
           <div class="summary-strip">
             <div>
               <span>Source brands</span>
-              <strong>Lab Series + Tom Ford Beauty</strong>
+              <strong id="sourceBrands">Lab Series + Tom Ford Beauty</strong>
             </div>
             <div>
               <span>Recommendation logic</span>
@@ -138,6 +160,6 @@
       </section>
     </main>
 
-    <script src="./app.js"></script>
+    <script src="./app.js?v=2"></script>
   </body>
 </html>
