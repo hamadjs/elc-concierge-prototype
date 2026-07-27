@@ -24,5 +24,6 @@ Then visit `http://localhost:4173`.
 - User provides skin type, goal, concerns, budget, and a short concierge note.
 - The app ranks a small catalog snapshot from Lab Series and Tom Ford Beauty.
 - It returns a routine with product cards, rationale, prices, total budget, images, and brand PDP links.
+- User can refine the regimen through a lightweight chat window for budget, hydration, oil control, SPF, anti-aging, simpler routine, or makeup-finish changes.
 
 Product data was sampled from public Shopify storefront product endpoints on June 21, 2026.

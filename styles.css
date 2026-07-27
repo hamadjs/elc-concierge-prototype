@@ -1,11 +1,11 @@
 :root {
   color-scheme: light;
   --ink: #171717;
-  --muted: #65605a;
-  --line: #ddd7ce;
-  --paper: #f6f2ea;
-  --panel: #fffdf8;
-  --accent: #7c2d2d;
+  --muted: #5f5c57;
+  --line: #d7d2c8;
+  --paper: #f7f3eb;
+  --panel: #fffefb;
+  --accent: #0c3b2f;
   --accent-2: #0f766e;
   --gold: #b58a3a;
   --soft: #ece4d7;
@@ -22,8 +22,7 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family:
-    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
+    "Akzidenz Grotesk", "Helvetica Neue", Arial, ui-sans-serif, system-ui, sans-serif;
   letter-spacing: 0;
 }
 
@@ -32,6 +31,15 @@ input,
 select,
 textarea {
   font: inherit;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
 }
 
 .app-shell {
@@ -68,20 +76,17 @@ textarea {
 
 .brand-lockup {
   display: flex;
-  gap: 14px;
+  gap: 16px;
   align-items: center;
   padding-bottom: 20px;
   border-bottom: 1px solid var(--line);
 }
 
-.mark {
-  display: grid;
-  place-items: center;
-  width: 54px;
-  height: 54px;
-  border: 1px solid var(--ink);
-  font-family: Georgia, serif;
-  font-size: 18px;
+.elc-logo {
+  width: min(162px, 44%);
+  min-width: 124px;
+  height: auto;
+  object-fit: contain;
 }
 
 .eyebrow {
@@ -102,7 +107,9 @@ p {
 
 h1 {
   margin-bottom: 0;
+  font-family: Optima, "Times New Roman", Georgia, serif;
   font-size: 26px;
+  font-weight: 400;
   line-height: 1.05;
 }
 
@@ -220,63 +227,6 @@ button svg {
   color: var(--ink);
 }
 
-.shopify-card {
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #f9f5ee;
-  padding: 18px;
-}
-
-.shopify-card h2 {
-  margin-bottom: 8px;
-  font-size: 18px;
-}
-
-.shopify-card p {
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.45;
-}
-
-.icon-pill {
-  display: grid;
-  place-items: center;
-  width: 36px;
-  height: 36px;
-  margin-bottom: 12px;
-  border-radius: 999px;
-  background: #fff;
-  color: var(--accent-2);
-}
-
-dl {
-  display: grid;
-  gap: 8px;
-  margin: 14px 0 0;
-}
-
-dl div {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  padding-top: 8px;
-  border-top: 1px solid var(--line);
-}
-
-dt,
-dd {
-  margin: 0;
-  font-size: 12px;
-}
-
-dt {
-  color: var(--muted);
-}
-
-dd {
-  font-weight: 850;
-}
-
 .results-header {
   display: flex;
   justify-content: space-between;
@@ -288,7 +238,9 @@ dd {
 
 .results-header h2 {
   margin-bottom: 0;
+  font-family: Optima, "Times New Roman", Georgia, serif;
   font-size: clamp(28px, 4vw, 54px);
+  font-weight: 400;
   line-height: 0.95;
 }
 
@@ -443,7 +395,9 @@ dd {
 
 .chat-head h3 {
   margin: 0;
+  font-family: Optima, "Times New Roman", Georgia, serif;
   font-size: 16px;
+  font-weight: 400;
 }
 
 .conversation p {
@@ -456,6 +410,7 @@ dd {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  margin-top: 14px;
 }
 
 .quick-actions button {
@@ -465,6 +420,56 @@ dd {
   background: #fff;
   color: var(--ink);
   font-size: 13px;
+}
+
+.chat-log {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.chat-bubble {
+  max-width: min(680px, 100%);
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.chat-bubble.user {
+  justify-self: end;
+  background: var(--ink);
+  color: #fff;
+}
+
+.chat-bubble.assistant {
+  justify-self: start;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--muted);
+}
+
+.chat-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.chat-form input {
+  min-width: 0;
+  height: 42px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--ink);
+}
+
+.chat-form button {
+  padding: 0 14px;
+  background: var(--accent);
+  color: #fff;
 }
 
 @media (max-width: 1080px) {
@@ -507,6 +512,10 @@ dd {
   }
 
   .routine-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .chat-form {
     grid-template-columns: 1fr;
   }
 }

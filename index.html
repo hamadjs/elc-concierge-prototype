@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ELC Shopify Beauty Concierge Prototype</title>
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles.css?v=5" />
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   </head>
   <body>
@@ -12,7 +12,7 @@
       <section class="workspace">
         <aside class="intake-panel">
           <div class="brand-lockup">
-            <span class="mark">ELC</span>
+            <img class="elc-logo" src="./assets/elc-black-logo.png" alt="Estée Lauder Companies" />
             <div>
               <p class="eyebrow">North America Concierge</p>
               <h1>Portfolio beauty advisor</h1>
@@ -77,19 +77,6 @@
               </button>
             </div>
           </form>
-
-          <div class="shopify-card">
-            <div class="icon-pill"><i data-lucide="shopping-bag"></i></div>
-            <h2>Lean Shopify path</h2>
-            <p>
-              Lab Series and Tom Ford Beauty expose a common Shopify catalog structure, so the concierge can start as a discovery layer with product links before any unified checkout work.
-            </p>
-            <dl>
-              <div><dt>Feeds checked</dt><dd>products.json</dd></div>
-              <div><dt>Commerce model</dt><dd>PDP redirect</dd></div>
-              <div><dt>Expansion</dt><dd>Add Shopify brands</dd></div>
-            </dl>
-          </div>
         </aside>
 
         <section class="results-panel">
@@ -128,16 +115,25 @@
               <h3>Concierge response</h3>
             </div>
             <p id="conciergeCopy"></p>
+            <div id="chatLog" class="chat-log" aria-live="polite"></div>
             <div class="quick-actions">
               <button type="button" data-preset="cheaper">Make it cheaper</button>
               <button type="button" data-preset="premium">Make it premium</button>
               <button type="button" data-preset="makeup">Add makeup finish</button>
             </div>
+            <form id="chatForm" class="chat-form">
+              <label class="sr-only" for="chatInput">Refine regimen</label>
+              <input id="chatInput" type="text" placeholder="Ask for changes: less expensive, oil control, add SPF, simpler routine..." />
+              <button type="submit">
+                <i data-lucide="send"></i>
+                Send
+              </button>
+            </form>
           </section>
         </section>
       </section>
     </main>
 
-    <script src="./app.js"></script>
+    <script src="./app.js?v=5"></script>
   </body>
 </html>

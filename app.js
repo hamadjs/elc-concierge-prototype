@@ -218,6 +218,16 @@ const totalValue = document.querySelector("#totalValue");
 const budgetStatus = document.querySelector("#budgetStatus");
 const routineTitle = document.querySelector("#routineTitle");
 const conciergeCopy = document.querySelector("#conciergeCopy");
+const chatForm = document.querySelector("#chatForm");
+const chatInput = document.querySelector("#chatInput");
+const chatLog = document.querySelector("#chatLog");
+
+const chatMessages = [
+  {
+    role: "assistant",
+    text: "Tell me what you would like to change, and I will adjust the regimen."
+  }
+];
 
 function getConcerns() {
   return [...document.querySelectorAll("input[name='concerns']:checked")].map((input) => input.value);
@@ -329,7 +339,93 @@ function render() {
     .join("");
 
   conciergeCopy.textContent = `Based on ${skinType.value} skin, ${concernText}, and a $${maxBudget} budget, this edit uses Lab Series for the core skin regimen and selectively adds Tom Ford Beauty where it improves the finish. In production, the same flow can call Shopify storefront catalog data, filter by price/category/availability, generate the recommendation, and send purchase intent back to each brand PDP.`;
+  renderChat();
   lucide.createIcons();
+}
+
+function addChatMessage(role, text) {
+  chatMessages.push({ role, text });
+  renderChat();
+}
+
+function escapeHtml(value) {
+  return value.replace(/[&<>"']/g, (char) => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#039;"
+  })[char]);
+}
+
+function renderChat() {
+  chatLog.innerHTML = chatMessages
+    .map((message) => `<div class="chat-bubble ${message.role}">${escapeHtml(message.text)}</div>`)
+    .join("");
+}
+
+function setConcern(value, checked = true) {
+  const input = document.querySelector(`input[name='concerns'][value='${value}']`);
+  if (input) input.checked = checked;
+}
+
+function refineFromMessage(message) {
+  const text = message.toLowerCase();
+  const updates = [];
+
+  if (text.includes("cheaper") || text.includes("less expensive") || text.includes("lower budget") || text.includes("budget")) {
+    budget.value = Math.max(75, Number(budget.value) - 45);
+    note.value = "Keep this routine efficient and favor lower-ticket products while still addressing my main concerns.";
+    updates.push("lowered the budget");
+  }
+
+  if (text.includes("premium") || text.includes("luxury") || text.includes("best")) {
+    budget.value = Math.min(350, Number(budget.value) + 120);
+    note.value = "Make this feel more premium and include luxury skin care or makeup where it makes sense.";
+    updates.push("shifted toward a more premium edit");
+  }
+
+  if (text.includes("makeup") || text.includes("foundation") || text.includes("concealer") || text.includes("lip") || text.includes("finish")) {
+    goal.value = "polished-look";
+    setConcern("makeup", true);
+    updates.push("added a makeup finish");
+  }
+
+  if (text.includes("oil") || text.includes("shiny") || text.includes("shine") || text.includes("matte")) {
+    skinType.value = "oily";
+    goal.value = "oil-control";
+    setConcern("shine", true);
+    setConcern("pores", true);
+    updates.push("prioritized oil control");
+  }
+
+  if (text.includes("dry") || text.includes("hydrating") || text.includes("hydration") || text.includes("dehydrated")) {
+    goal.value = "hydration";
+    setConcern("dryness", true);
+    updates.push("prioritized hydration");
+  }
+
+  if (text.includes("spf") || text.includes("sunscreen") || text.includes("sun")) {
+    setConcern("spf", true);
+    updates.push("added SPF as a concern");
+  }
+
+  if (text.includes("aging") || text.includes("anti-aging") || text.includes("fine line") || text.includes("wrinkle")) {
+    goal.value = "anti-age";
+    setConcern("fine-lines", true);
+    updates.push("prioritized anti-aging");
+  }
+
+  if (text.includes("simple") || text.includes("fewer") || text.includes("basic") || text.includes("easy")) {
+    goal.value = "simple-routine";
+    note.value = "Keep this as a simple, low-friction routine with only the most important steps.";
+    updates.push("simplified the routine");
+  }
+
+  render();
+  return updates.length
+    ? `Updated: ${updates.join(", ")}. I rebuilt the regimen with the current budget and product set.`
+    : "I captured that note. Try asking for a lower budget, more premium products, oil control, hydration, SPF, anti-aging, or a makeup finish.";
 }
 
 function setDefaults() {
@@ -350,6 +446,16 @@ form.addEventListener("submit", (event) => {
 
 budget.addEventListener("input", render);
 document.querySelector("#resetBtn").addEventListener("click", setDefaults);
+
+chatForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const message = chatInput.value.trim();
+  if (!message) return;
+  addChatMessage("user", message);
+  const response = refineFromMessage(message);
+  addChatMessage("assistant", response);
+  chatInput.value = "";
+});
 
 document.querySelectorAll("[data-preset]").forEach((button) => {
   button.addEventListener("click", () => {
