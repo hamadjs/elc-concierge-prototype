@@ -5,7 +5,7 @@ const catalog = [
     handle: "daily-rescue-gel-cleanser",
     type: "Cleanser",
     price: 36,
-    image: "https://cdn.shopify.com/s/files/1/0821/0323/8690/files/ls_sku_448W01_4000x4000_0S.png?v=1778862905",
+    image: "./assets/products/ls-daily-rescue-cleanser.png",
     url: "https://www.labseries.com/products/daily-rescue-gel-cleanser",
     tags: ["hydration", "dryness", "sensitive", "normal", "combination", "simple-routine"],
     reason: "A low-friction cleanser option to start the routine without pushing the budget."
@@ -16,7 +16,7 @@ const catalog = [
     handle: "clear-ls-deep-pore-purifying-face-wash",
     type: "Cleanser",
     price: 30,
-    image: "https://cdn.shopify.com/s/files/1/0821/0323/8690/files/ls_sku_47GN01_4000x4000_0S.png?v=1781118309",
+    image: "./assets/products/ls-clear-face-wash.png",
     url: "https://www.labseries.com/products/clear-ls-deep-pore-purifying-face-wash",
     tags: ["oily", "shine", "pores", "oil-control", "combination"],
     reason: "A sharper fit when shine, pores, and oil control are the main needs."
@@ -27,7 +27,7 @@ const catalog = [
     handle: "clear-ls-oil-control-mattifying-toner",
     type: "Toner",
     price: 35,
-    image: "https://cdn.shopify.com/s/files/1/0821/0323/8690/files/ls_sku_47GT01_4000x4000_0.png?v=1778862986",
+    image: "./assets/products/ls-oil-control-toner.png",
     url: "https://www.labseries.com/products/clear-ls-oil-control-mattifying-toner",
     tags: ["oily", "shine", "pores", "oil-control"],
     reason: "Adds a targeted oil-control step while keeping the routine compact."
@@ -38,7 +38,7 @@ const catalog = [
     handle: "daily-rescue-water-lotion-toner",
     type: "Toner",
     price: 50,
-    image: "https://cdn.shopify.com/s/files/1/0821/0323/8690/files/ls_sku_4K8301_4000x4000_0S.png?v=1781739610",
+    image: "./assets/products/ls-water-lotion-toner.png",
     url: "https://www.labseries.com/products/daily-rescue-water-lotion-toner",
     tags: ["hydration", "dryness", "sensitive", "normal", "combination"],
     reason: "A hydration support step for consumers who want more comfort before moisturizer."
@@ -49,7 +49,7 @@ const catalog = [
     handle: "daily-rescue-repair-serum",
     type: "Serum",
     price: 74,
-    image: "https://cdn.shopify.com/s/files/1/0821/0323/8690/files/ls_sku_43KH01_4000x4000_0S.png?v=1779954678",
+    image: "./assets/products/ls-repair-serum.png",
     url: "https://www.labseries.com/products/daily-rescue-repair-serum",
     tags: ["hydration", "dryness", "fine-lines", "sensitive", "anti-age"],
     reason: "Gives the regimen a treatment step without jumping into luxury-price territory."
@@ -60,7 +60,7 @@ const catalog = [
     handle: "anti-age-max-ls-serum",
     type: "Serum",
     price: 96,
-    image: "https://cdn.shopify.com/s/files/1/0821/0323/8690/files/ls_sku_462J01_4000x4000_0S.png?v=1781298390",
+    image: "./assets/products/ls-anti-age-serum.png",
     url: "https://www.labseries.com/products/anti-age-max-ls-serum",
     tags: ["anti-age", "fine-lines", "dryness", "premium"],
     reason: "A stronger treatment choice when visible aging is prioritized."
@@ -71,7 +71,7 @@ const catalog = [
     handle: "all-in-one-face-treatment",
     type: "Moisturizer",
     price: 40,
-    image: "https://cdn.shopify.com/s/files/1/0821/0323/8690/files/ls_sku_444A01_4000x4000_0S.png?v=1781298306",
+    image: "./assets/products/ls-all-in-one-moisturizer.png",
     url: "https://www.labseries.com/products/all-in-one-face-treatment",
     tags: ["normal", "combination", "simple-routine", "hydration"],
     reason: "A practical moisturizer that works well for a lean daily routine."
@@ -82,7 +82,7 @@ const catalog = [
     handle: "clear-ls-lightweight-face-moisturizer",
     type: "Moisturizer",
     price: 50,
-    image: "https://cdn.shopify.com/s/files/1/0821/0323/8690/files/ls_sku_47GR01_4000x4000_0S_c50e52c1-95ce-46ea-9538-1eaaa02995b5.png?v=1778862009",
+    image: "./assets/products/ls-mattifying-moisturizer.png",
     url: "https://www.labseries.com/products/clear-ls-lightweight-face-moisturizer",
     tags: ["oily", "shine", "oil-control", "combination"],
     reason: "Hydrates with a lighter finish for users worried about shine."
@@ -93,7 +93,7 @@ const catalog = [
     handle: "daily-rescue-energizing-gel-cream-moisturizer",
     type: "Moisturizer",
     price: 55,
-    image: "https://cdn.shopify.com/s/files/1/0821/0323/8690/files/ls_sku_40PQ01_4000x4000_0S.png?v=1781040682",
+    image: "./assets/products/ls-gel-cream-moisturizer.png",
     url: "https://www.labseries.com/products/daily-rescue-energizing-gel-cream-moisturizer",
     tags: ["hydration", "dryness", "combination", "normal"],
     reason: "A gel-cream texture suits hydration goals without feeling too heavy."
@@ -104,7 +104,7 @@ const catalog = [
     handle: "all-in-one-defense-lotion-spf35",
     type: "SPF",
     price: 65,
-    image: "https://cdn.shopify.com/s/files/1/0821/0323/8690/files/ls_sku_449K01_4000x4000_0S.png?v=1779515407",
+    image: "./assets/products/ls-spf-moisturizer.png",
     url: "https://www.labseries.com/products/all-in-one-defense-lotion-spf35",
     tags: ["spf", "simple-routine", "normal", "combination"],
     reason: "A day-step option that folds moisturizer and SPF into one slot."
@@ -115,7 +115,7 @@ const catalog = [
     handle: "shade-and-illuminate-soft-radiance-primer-broad-spectrum-spf-25",
     type: "Primer",
     price: 80,
-    image: "https://cdn.shopify.com/s/files/1/0761/9690/5173/files/tfb_sku_TA6101_2000x2000_0.png?v=1782027235",
+    image: "./assets/products/tfb-radiance-primer.png",
     url: "https://www.tomfordbeauty.com/products/shade-and-illuminate-soft-radiance-primer-broad-spectrum-spf-25",
     tags: ["makeup", "polished-look", "spf", "dryness", "premium"],
     reason: "Bridges skin prep and makeup finish with SPF for a more polished result."
@@ -126,7 +126,7 @@ const catalog = [
     handle: "architecture-soft-matte-blurring-foundation",
     type: "Foundation",
     price: 95,
-    image: "https://cdn.shopify.com/s/files/1/0761/9690/5173/files/tf_sku_TE1619_NA_3000x3000_0.png?v=1782039026",
+    image: "./assets/products/tfb-blurring-foundation.png",
     url: "https://www.tomfordbeauty.com/products/architecture-soft-matte-blurring-foundation",
     tags: ["makeup", "polished-look", "shine", "oily", "pores", "premium"],
     reason: "A complexion option when the user wants a refined finish and shine control."
@@ -137,7 +137,7 @@ const catalog = [
     handle: "shade-and-illuminate-concealer",
     type: "Concealer",
     price: 60,
-    image: "https://cdn.shopify.com/s/files/1/0761/9690/5173/files/tf_sku_T92612_2000x2000_0_778d3ec8-28c2-4e34-84b3-0fab4ab59a41.png?v=1782057094",
+    image: "./assets/products/tfb-concealer.png",
     url: "https://www.tomfordbeauty.com/products/shade-and-illuminate-concealer",
     tags: ["makeup", "polished-look", "simple-routine"],
     reason: "A compact complexion add-on for users who want a makeup result without a full face."
@@ -148,9 +148,9 @@ const catalog = [
     handle: "soleil-tinted-lip-glow",
     type: "Lip",
     price: 40,
-    image: "https://cdn.shopify.com/s/files/1/0761/9690/5173/files/tf_sku_T3BH01_3000x3000_0.png?v=1782057088",
+    image: "./assets/products/tfb-lip-glow.png",
     url: "https://www.tomfordbeauty.com/products/soleil-tinted-lip-glow",
-    tags: ["makeup", "polished-look", "dryness", "simple-routine"],
+    tags: ["makeup", "polished-look", "dryness", "simple-routine", "lip-glow"],
     reason: "An approachable luxury finishing item that does not overwhelm the budget."
   },
   {
@@ -159,9 +159,9 @@ const catalog = [
     handle: "runway-lip-color",
     type: "Lip",
     price: 35,
-    image: "https://cdn.shopify.com/s/files/1/0761/9690/5173/files/tf_sku_T4D030_3000x3000_0.png?v=1781794899",
+    image: "./assets/products/tfb-runway-lip-color.png",
     url: "https://www.tomfordbeauty.com/products/runway-lip-color",
-    tags: ["makeup", "polished-look", "simple-routine"],
+    tags: ["makeup", "polished-look", "simple-routine", "lipstick"],
     reason: "A lower-ticket Tom Ford item that makes the cross-brand basket feel premium."
   },
   {
@@ -170,7 +170,7 @@ const catalog = [
     handle: "soleil-sunkissed-blush",
     type: "Blush",
     price: 40,
-    image: "https://cdn.shopify.com/s/files/1/0761/9690/5173/files/tf_sku_T3TD01_3000x3000_0.png?v=1782027201",
+    image: "./assets/products/tfb-soleil-blush.png",
     url: "https://www.tomfordbeauty.com/products/soleil-sunkissed-blush",
     tags: ["makeup", "polished-look", "simple-routine"],
     reason: "Adds a visible makeup payoff while staying realistic for a mixed-brand basket."
@@ -181,7 +181,7 @@ const catalog = [
     handle: "tom-ford-research-cleansing-concentrate",
     type: "Cleanser",
     price: 100,
-    image: "https://cdn.shopify.com/s/files/1/0761/9690/5173/files/tf_sku_T93Y01_2000x2000_0.png?v=1782027271",
+    image: "./assets/products/tfb-cleansing-concentrate.png",
     url: "https://www.tomfordbeauty.com/products/tom-ford-research-cleansing-concentrate",
     tags: ["premium", "hydration", "dryness", "anti-age"],
     reason: "A premium skin-care swap when the user asks for a luxury-leaning routine."
@@ -192,7 +192,7 @@ const catalog = [
     handle: "tom-ford-research-serum-concentrate",
     type: "Serum",
     price: 380,
-    image: "https://cdn.shopify.com/s/files/1/0761/9690/5173/files/tf_sku_T5AH01_2000x2000_0.png?v=1782027204",
+    image: "./assets/products/tfb-serum-concentrate.png",
     url: "https://www.tomfordbeauty.com/products/tom-ford-research-serum-concentrate",
     tags: ["premium", "anti-age", "fine-lines", "dryness"],
     reason: "A prestige treatment candidate for high-budget, premium-skincare scenarios."
@@ -221,6 +221,7 @@ const conciergeCopy = document.querySelector("#conciergeCopy");
 const chatForm = document.querySelector("#chatForm");
 const chatInput = document.querySelector("#chatInput");
 const chatLog = document.querySelector("#chatLog");
+const chatSend = document.querySelector("#chatSend");
 
 const chatMessages = [
   {
@@ -228,6 +229,10 @@ const chatMessages = [
     text: "Tell me what you would like to change, and I will adjust the regimen."
   }
 ];
+
+const refinementState = {
+  lipPreference: null
+};
 
 function getConcerns() {
   return [...document.querySelectorAll("input[name='concerns']:checked")].map((input) => input.value);
@@ -239,7 +244,8 @@ function getIntent() {
     "oil-control": ["greasy", "oil", "shine", "matte"],
     hydration: ["hydration", "dry", "comfort", "moisture"],
     "anti-age": ["aging", "fine", "lines", "firm"],
-    makeup: ["makeup", "look", "finish", "foundation", "lip"]
+    makeup: ["makeup", "look", "finish", "foundation", "lip"],
+    lipstick: ["lipstick", "lip color", "lip colour"]
   };
   const inferred = Object.entries(noteSignals)
     .filter(([, words]) => words.some((word) => text.includes(word)))
@@ -254,7 +260,9 @@ function scoreProduct(product, intent, preferPremium) {
   const makeupBoost = intent.includes("makeup") || intent.includes("polished-look") ? (["Primer", "Foundation", "Concealer", "Lip", "Blush"].includes(product.type) ? 4 : 0) : 0;
   const premiumScore = preferPremium && product.tags.includes("premium") ? 5 : 0;
   const accessibleScore = !preferPremium && product.price <= 80 ? 2 : 0;
-  return tagScore + typeBoost + makeupBoost + premiumScore + accessibleScore;
+  const lipstickScore = refinementState.lipPreference === "lipstick" && product.tags.includes("lipstick") ? 10 : 0;
+  const lipGlowPenalty = refinementState.lipPreference === "lipstick" && product.tags.includes("lip-glow") ? -6 : 0;
+  return tagScore + typeBoost + makeupBoost + premiumScore + accessibleScore + lipstickScore + lipGlowPenalty;
 }
 
 function pickRoutine() {
@@ -316,7 +324,7 @@ function render() {
       (product, index) => `
         <article class="product-card">
           <div class="product-media">
-            <img src="${product.image}" alt="${product.title}" loading="lazy" />
+            <img src="${optimizedImageUrl(product.image)}" alt="${product.title}" loading="eager" decoding="async" />
           </div>
           <div class="product-body">
             <div class="meta-row">
@@ -364,6 +372,11 @@ function renderChat() {
     .join("");
 }
 
+function optimizedImageUrl(src) {
+  if (!src.includes("cdn.shopify.com")) return src;
+  return `${src}${src.includes("?") ? "&" : "?"}width=900`;
+}
+
 function setConcern(value, checked = true) {
   const input = document.querySelector(`input[name='concerns'][value='${value}']`);
   if (input) input.checked = checked;
@@ -389,6 +402,14 @@ function refineFromMessage(message) {
     goal.value = "polished-look";
     setConcern("makeup", true);
     updates.push("added a makeup finish");
+  }
+
+  if (text.includes("lipstick") || text.includes("lip color") || text.includes("lip colour")) {
+    goal.value = "polished-look";
+    setConcern("makeup", true);
+    refinementState.lipPreference = "lipstick";
+    note.value = "Include a polished makeup finish and use a lipstick or lip color instead of a lip glow.";
+    updates.push("swapped the lip step to lipstick");
   }
 
   if (text.includes("oil") || text.includes("shiny") || text.includes("shine") || text.includes("matte")) {
@@ -428,11 +449,21 @@ function refineFromMessage(message) {
     : "I captured that note. Try asking for a lower budget, more premium products, oil control, hydration, SPF, anti-aging, or a makeup finish.";
 }
 
+function submitChatMessage() {
+  const message = chatInput.value.trim();
+  if (!message) return;
+  addChatMessage("user", message);
+  const response = refineFromMessage(message);
+  addChatMessage("assistant", response);
+  chatInput.value = "";
+}
+
 function setDefaults() {
   skinType.value = defaultForm.skinType;
   goal.value = defaultForm.goal;
   budget.value = defaultForm.budget;
   note.value = defaultForm.note;
+  refinementState.lipPreference = null;
   document.querySelectorAll("input[name='concerns']").forEach((input) => {
     input.checked = defaultForm.concerns.includes(input.value);
   });
@@ -449,12 +480,19 @@ document.querySelector("#resetBtn").addEventListener("click", setDefaults);
 
 chatForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  const message = chatInput.value.trim();
-  if (!message) return;
-  addChatMessage("user", message);
-  const response = refineFromMessage(message);
-  addChatMessage("assistant", response);
-  chatInput.value = "";
+  submitChatMessage();
+});
+
+chatSend.addEventListener("click", (event) => {
+  event.preventDefault();
+  submitChatMessage();
+});
+
+chatInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    submitChatMessage();
+  }
 });
 
 document.querySelectorAll("[data-preset]").forEach((button) => {
